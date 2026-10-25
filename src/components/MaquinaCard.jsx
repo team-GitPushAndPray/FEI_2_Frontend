@@ -2,8 +2,14 @@
 // https://github.com/bbulakh/tailwind-ecommerce
 import BotonFavorito from './BotonFavorito'
 
+const formatoPrecio = new Intl.NumberFormat('es-AR', {
+  style: 'currency',
+  currency: 'ARS',
+  maximumFractionDigits: 0,
+})
+
 export default function MaquinaCard({ maquina }) {
-  const { tipo, nombre, imagenes } = maquina
+  const { tipo, nombre, imagenes, precioAlquiler, precioEnLetras } = maquina
   const portada = imagenes[0]
 
   return (
@@ -33,6 +39,20 @@ export default function MaquinaCard({ maquina }) {
         <p className="font-display text-lg font-semibold tracking-wide uppercase">
           {nombre}
         </p>
+
+        {precioAlquiler != null && (
+          <p className="mt-1 font-semibold text-acento">
+            {formatoPrecio.format(precioAlquiler)}
+            <span className="text-sm font-normal text-tinta/60"> / día</span>
+          </p>
+        )}
+
+        {/* Precio en letras (para contratos), generado por el SOAP del backend */}
+        {precioEnLetras && (
+          <p className="mt-0.5 text-xs text-tinta/60 italic first-letter:uppercase">
+            {precioEnLetras}
+          </p>
+        )}
       </div>
     </article>
   )
