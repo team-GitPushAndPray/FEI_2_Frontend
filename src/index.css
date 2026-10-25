@@ -21,6 +21,9 @@
   --color-red-500: #ef3a41; /* texto/acentos sobre negro (contraste 5.3:1) */
   --color-red-600: #d11a21; /* rojo principal: texto blanco encima 5.4:1 */
   --color-red-700: #a3121a; /* hover de superficies rojas, acento en claro */
+  /* Única excepción a la paleta: el verde del semáforo climático
+     (SemaforoClima). Texto blanco encima 5.0:1 */
+  --color-green-700: #15803d;
 
   /*
     Tokens que se invierten según el tema. Acá están los valores del modo

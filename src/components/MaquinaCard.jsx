@@ -1,6 +1,8 @@
 // Markup adaptado de tailwind-ecommerce (MIT, Bogdan Bulakh):
 // https://github.com/bbulakh/tailwind-ecommerce
+import useClimaMaquina from '../hooks/useClimaMaquina'
 import BotonFavorito from './BotonFavorito'
+import SemaforoClima from './SemaforoClima'
 
 const formatoPrecio = new Intl.NumberFormat('es-AR', {
   style: 'currency',
@@ -9,8 +11,18 @@ const formatoPrecio = new Intl.NumberFormat('es-AR', {
 })
 
 export default function MaquinaCard({ maquina }) {
-  const { tipo, nombre, imagenes, precioAlquiler, precioEnLetras } = maquina
+  const {
+    tipo,
+    nombre,
+    imagenes,
+    precioAlquiler,
+    precioEnLetras,
+    latitud,
+    longitud,
+  } = maquina
   const portada = imagenes[0]
+  // Cada tarjeta consulta el clima en la ubicación de su propia máquina.
+  const { clima, cargando: cargandoClima } = useClimaMaquina(latitud, longitud)
 
   return (
     <article className="vidrio flex flex-col overflow-hidden rounded-xl transition duration-300 hover:-translate-y-1 hover:border-acento/50">
@@ -53,6 +65,8 @@ export default function MaquinaCard({ maquina }) {
             {precioEnLetras}
           </p>
         )}
+
+        <SemaforoClima clima={clima} cargando={cargandoClima} />
       </div>
     </article>
   )
