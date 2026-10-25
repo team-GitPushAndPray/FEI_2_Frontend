@@ -2,6 +2,7 @@
 // esqueletos mientras carga, un panel de error con reintento, un panel de
 // lista vacía o el contenido. `className` son las clases de la grilla y
 // `textoVacio` explica por qué no hay nada (ej. un filtro sin resultados).
+import { SemaforoEsqueleto } from './SemaforoClima'
 
 // Tarjeta con la misma forma que MaquinaCard, para que no salte el layout.
 export function TarjetaEsqueleto() {
@@ -10,6 +11,7 @@ export function TarjetaEsqueleto() {
       <div className="aspect-3/2 w-full bg-tinta/10" />
       <div className="px-4 py-3">
         <div className="my-1 h-5 w-3/4 rounded bg-tinta/15" />
+        <SemaforoEsqueleto />
       </div>
     </div>
   )
